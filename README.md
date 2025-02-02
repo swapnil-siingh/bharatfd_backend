@@ -51,12 +51,54 @@ $ python manage.py createsuperuser
 ```
 Follow the prompts to set up an admin username and password.
 
+
+
 ### 6. Run the Server
-```sh
+```
 $ python manage.py runserver
 ```
 
-The application will be available at `http://127.0.0.1:8000/`.
+### 7. The application will be available at `http://127.0.0.1:8000/`.
+#For Login Dummy Users
+##FOR ADMIN: username - root || Passoword - 1234
+##FOR OTHERS: username - dummy || Password - Bharat@1234
+
+
+#(optional) Install Redis(if not installed already) using Chocolatey
+
+
+## Step 1: Open PowerShell as Administrator
+1. Run the following command to allow script execution:
+   ```powershell
+   Set-ExecutionPolicy Bypass -Scope Process -Force
+   ```
+
+## Step 2: Install Chocolatey
+Run the following command in PowerShell:
+```powershell
+iwr https://community.chocolatey.org/install.ps1 -UseBasicParsing | iex
+```
+Wait for the installation to complete.
+
+## Step 3: Verify Chocolatey Installation
+Close and reopen PowerShell, then run:
+```powershell
+choco -v
+```
+If installed correctly, it will display the version number.
+
+## Step 4: Install Redis
+Now, install Redis using Chocolatey:
+```powershell
+choco install redis -y
+```
+
+## Step 5: Start Redis
+To start Redis manually, run:
+```powershell
+redis-server
+```
+
 
 ## Usage
 ### **Homepage**
@@ -86,6 +128,4 @@ target_languages = ['hi', 'bn', 'fr', 'es']  # Add new languages here
 ```
 $ python manage.py migrate
 ```
-#Dummy Users
-##FOR ADMIN: username - root || Passoword - 1234
-##FOR OTHERS: username - dummy || Password - Bharat@1234
+
