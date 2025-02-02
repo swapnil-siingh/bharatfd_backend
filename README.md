@@ -84,4 +84,4 @@ $ python manage.py migrate
 ```
 #Dummy Users
 ##FOR ADMIN: username - root || Passoword - 1234
-##FOR OTHERS: username - demo || Password - Bharatfd@1234
+##FOR OTHERS: username - dummy || Password - Bharatfd@1234
