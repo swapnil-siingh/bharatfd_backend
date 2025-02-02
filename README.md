@@ -9,6 +9,7 @@ This is a Django-based FAQ (Frequently Asked Questions) application that support
 - Admin panel to add, edit, and delete FAQs.
 - Uses Django REST Framework (DRF) for API-based access.
 - Caching for optimized performance.
+
 ##Screenshots
 ![bharatfdscreenshot](https://github.com/user-attachments/assets/61909944-e41b-499b-9c13-958bae2a4800)
 
