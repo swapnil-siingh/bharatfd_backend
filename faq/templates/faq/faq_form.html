@@ -1,48 +1,39 @@
-{% extends "base.html" %} {% block content %}
+{% extends "base.html" %} 
+
+{% block content %}
 <section class="max-w-md mx-auto py-12 px-6">
     <h2 class="text-3xl font-bold mb-4 text-[#E2E2B6]">{{ action }} FAQs</h2>
 
-    <form
-        method="post"
-        class="space-y-4">
+    <form method="post" class="space-y-4">
         {% csrf_token %}
 
         <!-- Question Field -->
-        <label
-            for="{{ form.question.id_for_label }}"
-            class="block font-semibold"
-            >Question</label
-        >
-        <textarea
-            class="block w-full px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500"
-            id="{{ form.question.id_for_label }}"
-            name="{{ form.question.html_name }}"
-            rows="3">
-{{ form.question.value }}</textarea
-        >
+        <label for="{{ form.question.id_for_label }}" class="block font-semibold">Question</label>
+        <textarea 
+            class="block w-full px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm"
+            id="{{ form.question.id_for_label }}" 
+            name="{{ form.question.html_name }}" 
+            rows="3">{{ form.question.value }}</textarea>
 
         <!-- Answer Field with CKEditor -->
-        <label
-            for="{{ form.answer.id_for_label }}"
-            class="block font-semibold"
-            >Answer</label
-        >
+        <label for="{{ form.answer.id_for_label }}" class="block font-semibold">Answer</label>
         {{ form.answer }}
 
+        <!-- Buttons -->
         <div class="flex items-center space-x-2">
-            <button
-                type="submit"
-                class="cursor-pointer flex items-center justify-center fill-lime-400 bg-lime-600 hover:bg-lime-700 active:border active:border-lime-400 rounded-md duration-100 p-2 w-full">
+            <button type="submit" 
+                class="cursor-pointer flex items-center justify-center bg-lime-600 hover:bg-lime-700 rounded-md duration-100 p-2 w-full">
                 {{ action }}
             </button>
-            <a
-                href="{% url 'homepage' %}"
-                class="cursor-pointer flex items-center justify-center fill-red-400 bg-red-600 hover:bg-red-700 active:border active:border-red-400 rounded-md duration-100 p-2 w-full"
-                >Cancel</a
-            >
+            <a href="{% url 'homepage' %}" 
+                class="cursor-pointer flex items-center justify-center bg-red-600 hover:bg-red-700 rounded-md duration-100 p-2 w-full">
+                Cancel
+            </a>
         </div>
     </form>
-    {{form.media}}
-
 </section>
+{% endblock %}
+
+{% block extra_scripts %}
+    {{ form.media }}
 {% endblock %}

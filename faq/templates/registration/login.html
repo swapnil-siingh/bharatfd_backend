@@ -1,30 +1,48 @@
-{% extends "base.html" %} {% block content %}
-<main
-    class="container mx-auto p-4 md:p-6 lg:p-12 bg-[#03346E] rounded-md w-[60%] h-fit">
+{% extends "base.html" %}
+
+{% block content %}
+<main class="container mx-auto p-4 md:p-6 lg:p-12 bg-[#03346E] rounded-md w-[60%] h-fit">
     <h2 class="text-3xl font-bold mb-4 text-center">Login</h2>
 
     {% if form.errors %}
-    <p class="text-red-500 mb-4">Invalid username or password.</p>
+    <div class="text-red-500 mb-4">
+        {% for field in form %}
+            {% if field.errors %}
+            <p class="text-sm">Invalid {{ field.label }} or password.</p>
+            {% endif %}
+        {% endfor %}
+    </div>
     {% endif %}
 
-    <form
-        method="post"
-        class="space-y-4">
-        {% csrf_token %} {{ form.as_p }}
-        <button
-            type="submit"
-            class="cursor-pointer transition-all bg-blue-500 text-white px-6 py-2 rounded-lg border-blue-600 border-b-[4px] hover:brightness-110 hover:-translate-y-[1px] hover:border-b-[6px] active:border-b-[2px] active:brightness-90 active:translate-y-[2px]">
+    <form method="post" class="space-y-4">
+        {% csrf_token %}
+
+        <!-- Username Field -->
+        <div class="flex flex-col">
+            <label for="{{ form.username.id_for_label }}" class="font-semibold mb-2">{{ form.username.label }}</label>
+            {{ form.username }}
+            {% if form.username.errors %}
+                <p class="text-red-500 text-sm">{{ form.username.errors }}</p>
+            {% endif %}
+        </div>
+
+        <!-- Password Field -->
+        <div class="flex flex-col">
+            <label for="{{ form.password.id_for_label }}" class="font-semibold mb-2">{{ form.password.label }}</label>
+            {{ form.password }}
+            {% if form.password.errors %}
+                <p class="text-red-500 text-sm">{{ form.password.errors }}</p>
+            {% endif %}
+        </div>
+
+        <button type="submit" class="cursor-pointer transition-all bg-blue-500 text-white px-6 py-2 rounded-lg border-blue-600 border-b-[4px] hover:brightness-110 hover:-translate-y-[1px] hover:border-b-[6px] active:border-b-[2px] active:brightness-90 active:translate-y-[2px]">
             Login
         </button>
     </form>
 
     <p class="mt-4">
         Don't have an account?
-        <a
-            href="{% url 'signup' %}"
-            class="text-blue-300 hover:text-blue-400"
-            >Sign up here</a
-        >
+        <a href="{% url 'signup' %}" class="text-blue-300 hover:text-blue-400">Sign up here</a>
     </p>
 </main>
 {% endblock %}
