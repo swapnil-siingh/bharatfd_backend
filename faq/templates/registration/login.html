@@ -1,0 +1,30 @@
+{% extends "base.html" %} {% block content %}
+<main
+    class="container mx-auto p-4 md:p-6 lg:p-12 bg-[#03346E] rounded-md w-[60%] h-fit">
+    <h2 class="text-3xl font-bold mb-4 text-center">Login</h2>
+
+    {% if form.errors %}
+    <p class="text-red-500 mb-4">Invalid username or password.</p>
+    {% endif %}
+
+    <form
+        method="post"
+        class="space-y-4">
+        {% csrf_token %} {{ form.as_p }}
+        <button
+            type="submit"
+            class="cursor-pointer transition-all bg-blue-500 text-white px-6 py-2 rounded-lg border-blue-600 border-b-[4px] hover:brightness-110 hover:-translate-y-[1px] hover:border-b-[6px] active:border-b-[2px] active:brightness-90 active:translate-y-[2px]">
+            Login
+        </button>
+    </form>
+
+    <p class="mt-4">
+        Don't have an account?
+        <a
+            href="{% url 'signup' %}"
+            class="text-blue-300 hover:text-blue-400"
+            >Sign up here</a
+        >
+    </p>
+</main>
+{% endblock %}

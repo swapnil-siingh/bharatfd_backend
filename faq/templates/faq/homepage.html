@@ -1,0 +1,54 @@
+{% extends "base.html" %} {% block content %}
+
+
+
+<h2 class="text-3xl font-bold mb-4 text-[#E2E2B6]">
+    {% if is_superuser %} ADMIN PANEL 
+    {% else %}
+    Frequently Asked Questions
+    {% endif %}
+
+</h2>
+<form method="get" class="mb-4">
+    <label for="language" class="font-semibold">Select Language:</label>
+    <select name="lang" id="language" class="border p-2 rounded bg-[#03346E]" onchange="this.form.submit()">
+        {% for code, name in languages.items %}
+            <option value="{{ code }}" {% if selected_language == code %}selected{% endif %}>
+                {{ name }}
+            </option>
+        {% endfor %}
+    </select>
+</form>
+{% for faq in faqs %}
+<div class="faq-item bg-[#03346E] p-4 rounded-lg shadow-md mb-4">
+    <h3 class="text-xl font-bold ">{{ faq.translated_question }}</h3>
+    
+
+    <p class="text-[#E2E2B6]">{{ faq.translated_answer|safe }}</p>
+
+    {% if is_superuser %}
+    <div class="flex items-center space-x-2">
+        <a
+            href="{% url 'edit_faq' faq.id %}"
+            title="Edit"
+            class="cursor-pointer flex items-center justify-center fill-lime-400 bg-lime-600 hover:bg-lime-700 active:border active:border-lime-400 rounded-md duration-100 p-2 w-[80px]">
+            Edit</a
+        >
+        <a
+            href="{% url 'delete_faq' faq.id %}"
+            title="Delete"
+            class="cursor-pointer flex items-center justify-center fill-red-400 bg-red-600 hover:bg-red-700 active:border active:border-red-400 rounded-md duration-100 p-2 w-[80px]">
+            Delete</a
+        >
+    </div>
+
+    {% endif %}
+</div>
+<hr class="my-4" />
+{% endfor %} {% if is_superuser %}
+<a
+    href="{% url 'add_faq' %}"
+    class="cursor-pointer flex items-center fill-gray-400 bg-gray-600 hover:bg-gray-700 active:border active:border-gray-400 rounded-md duration-100 p-2 w-fit"
+    >Add New FAQ</a
+>
+{% endif %} {% endblock %}
