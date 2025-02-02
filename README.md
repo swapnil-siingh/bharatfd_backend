@@ -59,10 +59,10 @@ $ python manage.py runserver
 ```
 
 ### 7. The application will be available at `http://127.0.0.1:8000/`.
-#For Login Dummy Users
+#For Login --> Dummy Users
 
-##FOR ADMIN: username - root || Passoword - 1234
-##FOR OTHERS: username - dummy || Password - Bharat@1234
+##FOR ADMIN: username -> root || Passoword -> 1234
+##FOR OTHERS: username -> dummy || Password -> Bharat@1234
 
 
 #(optional) Install Redis(if not installed already) using Chocolatey
