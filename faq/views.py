@@ -60,7 +60,7 @@ def homepage(request):
     return render(request, 'faq/homepage.html', {
         'faqs': faqs,
         'is_superuser': request.user.is_superuser,
-        'languages': settings.LANGUAGE_CODES,  # Pass available languages
+        'languages': settings.LANGUAGE_CODES,
         'selected_language': selected_language,
     })
 
